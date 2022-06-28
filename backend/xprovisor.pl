@@ -43,7 +43,7 @@ sub create_session {
   warn "* Spawning container $id for session $session...\n";
 
   system("
-    cd /etc/containers
+    cd /etc/nixos-containers
     if mkdir /home/$session 2>/dev/null; then
       cp -Ta --reflink=auto /home/.skeleton /home/$session
       chown 10000 /home/$session
@@ -169,7 +169,7 @@ sub clean_obsolete_machines {
 
     unless(get_leader($id)) {
       warn "* Machine $id has stopped; cleaning its files.\n";
-      system("rm", "-rf", "/var/lib/containers/xbox-$id");
+      system("rm", "-rf", "/var/lib/nixos-containers/xbox-$id");
       rmdir "$ROOT/clean/$id";
     }
   }
